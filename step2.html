@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>监控系统</title>
+</head>
+<body>
+<video width="640" height="480" autoplay></video>
+<canvas width="640" height="480"></canvas>
+
+<script>
+    var video = document.querySelector('video');
+    var canvas = document.querySelector('canvas');
+
+    // video捕获摄像头画面
+    navigator.webkitGetUserMedia({
+                video: true
+            }, success, error);
+
+    function success(stream) {
+        video.src = window.webkitURL.createObjectURL(stream);
+        video.play();
+    }
+
+    function error(err) {
+        alert('video error: ' + err)
+    }
+
+    //canvas
+    var context = canvas.getContext('2d');
+
+    setTimeout(function(){
+        //把当前视频帧内容渲染到画布上
+        context.drawImage(video, 0, 0, 640, 480);
+    }, 5000);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>监控系统</title>
+</head>
+<body>
+<video width="640" height="480" autoplay></video>
+
+<script>
+    var video = document.querySelector('video');
+
+    navigator.webkitGetUserMedia({
+                video: true
+            }, success, error);
+
+    function success(stream) {
+        video.src = window.webkitURL.createObjectURL(stream);
+        video.play();
+    }
+
+    function error(err) {
+        alert('video error: ' + err)
+    }
+</script>
+</body>
+</html>
